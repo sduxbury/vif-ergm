@@ -26,8 +26,7 @@ VIF.ERGM<-function(my.ergm){
     Rsq<-tgvec%*%xcor%*%gvec
     VIFS[1,i]<-1/(1-Rsq)
   }
-  ##Columns are covariates as they appear in the SAOM object
-  
+  ##Columns are covariates as they appear in the ERGM
   VIFS
 }
 
