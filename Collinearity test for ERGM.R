@@ -1,3 +1,7 @@
+##Measure to detect collinearity in ERGM
+#Based on Duxbury (2017)
+
+
 ###====================
 #=========ERGM========
 #====================
@@ -26,4 +30,48 @@ VIF.ERGM<-function(my.ergm){
   
   VIFS
 }
+
+
+
+
+
+
+
+
+
+
+
+#================================
+###=========Example==============
+#=================================
+
+
+
+
+##simulate network
+library(igraph)
+A<-erdos.renyi.game(75,.1,type="gnp")
+
+##convert to sna object
+a<-get.adjacency(A)
+a<-as.matrix(a)
+
+library(statnet)
+a<-as.network(a,directed=FALSE)
+
+
+##run ERGM
+m1<- ergm( a ~ edges + degpop+degcor+
+             gwesp(alpha=.7, fixed=TRUE),
+           control=control.ergm(seed=40))
+
+##evaluate collinearity
+VIF.ERGM(m1)
+
+####VIF > 20 suggests collinearity may exist in the model
+## VIF > 110 indicates severe collinearity
+
+
+           
+  
 
