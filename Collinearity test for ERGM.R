@@ -9,7 +9,7 @@
 
 ###my.ergm is an ERGM object inherited from ergm package--available via statnet
 VIF.ERGM<-function(my.ergm){
-  
+  require(ergm)
   ###simulate from posterior distribution of ERGM--toggle nsim for more robustness/less computation time
   m2<-simulate(my.ergm,statsonly=TRUE,nsim=1000)
   
@@ -44,7 +44,7 @@ VIF.ERGM<-function(my.ergm){
 ###=========Example==============
 #=================================
 
-
+##Not run
 
 
 ##simulate network
@@ -60,7 +60,7 @@ a<-as.network(a,directed=FALSE)
 
 
 ##run ERGM
-m1<- ergm( a ~ edges + degpop+degcor+
+m1<- ergm( a ~ edges + degreepopularity+degcor+
              gwesp(alpha=.7, fixed=TRUE),
            control=control.ergm(seed=40))
 
@@ -68,7 +68,7 @@ m1<- ergm( a ~ edges + degpop+degcor+
 VIF.ERGM(m1)
 
 ####VIF > 20 suggests collinearity may exist in the model
-## VIF > 110 indicates severe collinearity
+## VIF > 100 indicates severe collinearity
 
 
            
