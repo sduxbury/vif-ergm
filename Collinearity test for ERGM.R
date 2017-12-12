@@ -10,8 +10,8 @@
 ###my.ergm is an ERGM object inherited from ergm package--available via statnet
 VIF.ERGM<-function(my.ergm){
   require(ergm)
-  ###simulate from posterior distribution of ERGM--toggle nsim for more robustness/less computation time
-  m2<-simulate(my.ergm,statsonly=TRUE,nsim=1000)
+  ###simulate from posterior distribution of ERGM--toggle nsim for more robustness/less computation time. Default is 10,000
+  m2<-simulate(my.ergm,statsonly=TRUE,nsim=10000)
   
   
   cor.mat<-cor(m2) #calculate correlation matrix
@@ -26,7 +26,9 @@ VIF.ERGM<-function(my.ergm){
     Rsq<-tgvec%*%xcor%*%gvec
     VIFS[1,i]<-1/(1-Rsq)
   }
-  ##Columns are covariates as they appear in the ERGM
+
+  colnames(VIFS)<-names(m1$coef[-c(1)])
+
   VIFS
 }
 
@@ -60,7 +62,7 @@ a<-as.network(a,directed=FALSE)
 
 
 ##run ERGM
-m1<- ergm( a ~ edges + degree1.5+degcor+
+m1<- ergm( a ~ edges + kstar(2)+meandeg+
              gwesp(decay=.7, fixed=TRUE),
            control=control.ergm(seed=40))
 
