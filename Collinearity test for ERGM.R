@@ -60,8 +60,8 @@ a<-as.network(a,directed=FALSE)
 
 
 ##run ERGM
-m1<- ergm( a ~ edges + degreepopularity+degcor+
-             gwesp(alpha=.7, fixed=TRUE),
+m1<- ergm( a ~ edges + degree1.5+degcor+
+             gwesp(decay=.7, fixed=TRUE),
            control=control.ergm(seed=40))
 
 ##evaluate collinearity
