@@ -28,7 +28,7 @@ VIF.ERGM<-function(my.ergm){
   }
 
   colnames(VIFS)<-names(m1$coef[-c(1)])
-
+ message("Higher values indicate greater correlation.\nVIF > 20 is concerning, VIF > 100 indicates severe collinearity.")
   VIFS
 }
 
@@ -69,8 +69,6 @@ m1<- ergm( a ~ edges + kstar(2)+meandeg+
 ##evaluate collinearity
 VIF.ERGM(m1)
 
-####VIF > 20 suggests collinearity may exist in the model
-## VIF > 100 indicates severe collinearity
 
 
            
