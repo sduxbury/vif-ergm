@@ -32,7 +32,7 @@ VIF.ERGM<-function(my.ergm){
   VIFS
 }
 
-
+VIF.ERGM(my.ergm)
 
 
 
