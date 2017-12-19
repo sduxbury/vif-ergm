@@ -27,7 +27,7 @@ VIF.ERGM<-function(my.ergm){
     VIFS[1,i]<-1/(1-Rsq)
   }
 
-  colnames(VIFS)<-names(m1$coef[-c(1)])
+  colnames(VIFS)<-names(my.ergm$coef[-c(1)])
  message("Higher values indicate greater correlation.\nVIF > 20 is concerning, VIF > 100 indicates severe collinearity.")
   VIFS
 }
