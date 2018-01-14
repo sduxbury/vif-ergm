@@ -10,8 +10,8 @@
 ###my.ergm is an ERGM object inherited from ergm package--available via statnet
 VIF.ERGM<-function(my.ergm){
   require(ergm)
-  ###simulate from posterior distribution of ERGM--toggle nsim for more robustness/less computation time. Default is 10,000
-  m2<-simulate(my.ergm,statsonly=TRUE,nsim=10000)
+  ###simulate from posterior distribution of ERGM--toggle nsim for more robustness/less computation time. Default is 1,000
+  m2<-simulate(my.ergm,statsonly=TRUE,nsim=1000)
   
   
   cor.mat<-cor(m2) #calculate correlation matrix
