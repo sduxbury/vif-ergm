@@ -1,0 +1,27 @@
+The files in this folder contain the data and syntax necessary to reproduce the 
+results in "Diagnosing Multicollinearity in Exponential Random Graph Models."
+
+Data files:
+	Files for extended VIF simulations: 
+		For all network topologies: "ranvifssmall.RData"
+		For random networks: "randomnetworkvifs.RData"
+		For small-world networks: "swnetworkvifs2.RData"
+		For scale-free networks:  "sfnetworkvifs.RData"
+
+	File for absolute change in variance upon model reruns: "main files for SE change.RData"
+		
+	Files for supplementary analyses:
+ 		For large random networks: "vifslargenetworksupplement.RData"
+		For large small-world networks: "swvifslargenetworksupplement.RData"
+		For large scale-free networks:  "sfvifslargenetworksupplement.RData"
+
+	     For small networks of the same fixed specifications:
+		Random networks: "vifs16.csv"
+		Small-world networks: "swvifs16a.csv"
+		Scale-free networks: "sfvifs16a.csv"
+
+Syntax: 
+	To rerun analyses provided in paper: "Reproducable code.R"
+
+	To replicate simulation experiments, example conditions are provided in: "Example conditions for simulations.R"
+		Contact duxbury.5@osu.edu for questions regarding the data or code.
