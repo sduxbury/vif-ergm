@@ -1,5 +1,5 @@
 ##Measure to detect collinearity in ERGM
-#Based on Duxbury (2017)
+#Based on Duxbury (2018)
 
 
 ###====================
