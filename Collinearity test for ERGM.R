@@ -10,12 +10,13 @@
 ###my.ergm is an ERGM object inherited from ergm package--available via statnet
 VIF.ERGM<-function(my.ergm){
   require(ergm)
-  ###simulate from posterior distribution of ERGM--toggle nsim for more robustness/less computation time. Default is 1,000
-  m2<-simulate(my.ergm,statsonly=TRUE,nsim=1000)
-  
-  
-  cor.mat<-cor(m2) #calculate correlation matrix
+
+  cor.mat<-cov2cor(my.ergm$covar) #calculate correlation matrix
   corr5<-cor.mat[-c(1),-c(1)] ##omit edges term
+  
+  corr5<-corr5[!is.na(corr5[1:nrow(corr5)]),]
+  corr5<-corr5[,which(!is.na(corr5[1,1:ncol(corr5)]))]
+  
   VIFS<-matrix(0,nr=1,nc=ncol(corr5))
   
   for(i in 1:ncol(corr5)){
@@ -26,11 +27,12 @@ VIF.ERGM<-function(my.ergm){
     Rsq<-tgvec%*%xcor%*%gvec
     VIFS[1,i]<-1/(1-Rsq)
   }
-
+  ##Columns are covariates as they appear in the SAOM object
   colnames(VIFS)<-names(my.ergm$coef[-c(1)])
  message("Higher values indicate greater correlation.\nVIF > 20 is concerning, VIF > 100 indicates severe collinearity.")
   VIFS
 }
+
 
 VIF.ERGM(my.ergm)
 
